@@ -1,0 +1,35 @@
+document.addEventListener('DOMContentLoaded', function() {
+  // Set the date we're counting down to (for example, 1st January 2025)
+  var countDownDate = new Date("Dec 25, 2024 00:00:00").getTime();
+
+  // Update the count down every 1 second
+  var countdownFunction = setInterval(function() {
+    // Get today's date and time
+    var now = new Date().getTime();
+
+    // Find the distance between now and the count down date
+    var distance = countDownDate - now;
+
+    // Time calculations for days, hours, minutes and seconds
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // Display the result in the respective HTML elements
+    document.querySelector('.days').innerHTML = days;
+    document.querySelector('.hours').innerHTML = hours;
+    document.querySelector('.minutes').innerHTML = minutes;
+    document.querySelector('.seconds').innerHTML = seconds;
+
+    // If the countdown is over, display a message
+    if (distance < 0) {
+      clearInterval(countdownFunction);
+      document.querySelector('.days').innerHTML = "0";
+      document.querySelector('.hours').innerHTML = "0";
+      document.querySelector('.minutes').innerHTML = "0";
+      document.querySelector('.seconds').innerHTML = "0";
+      document.querySelector('.slogan').innerHTML = "Le site est maintenant en ligne !";
+    }
+  }, 1000);
+});
